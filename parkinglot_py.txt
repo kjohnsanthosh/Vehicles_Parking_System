@@ -1,0 +1,77 @@
+'''
+
+Components: worker
+
+Funtionalities:       
+        - total space available
+        - check the avalibility
+        - issuse tickets to customer
+        - checkouts tickets 
+        - parked vehicle details
+
+
+'''
+
+from parkingslot import ParkingSlot
+from tickets import Ticket
+from typing import List
+from vehicles import Vehicle
+
+
+class ParkingLot:
+    def __init__(self, total_slots: int):
+        ''' Initialize parking lot with a given number of slots '''
+
+        self.slots: List[ParkingSlot] = [ParkingSlot(i + 1) for i in range(total_slots)]
+
+
+    def display_available_slots(self):
+        ''' Displays all available parking slots '''
+
+        print("Available parking slots:")
+        available_slots = [slot.slot_number for slot in self.slots if slot.is_available]
+        
+        if available_slots:
+            print(", ".join(map(str, available_slots)))
+        else:
+            print("No slots available at the moment.")
+
+
+    def generate_ticket(self, vehicle: Vehicle):
+        ''' Assigns a vehicle to an available slot and generates a ticket '''
+        
+        for slot in self.slots:
+            if slot.is_available:
+                ticket = Ticket(slot.slot_number, vehicle.vehicle_number, vehicle.vehicle_type)  # data type fixing
+                slot.assign_vehicle(vehicle, ticket)
+                print(f"Ticket issued for slot {slot.slot_number}. Ticket ID: {ticket.ticket_id}")
+                return ticket
+        print("Parking lot is full!")
+        return None
+
+    
+    def checkout_vehicle(self, ticket_id: int):
+        ''' Checks out the vehicle by using the ticket ID and calculates the parking fee '''
+
+        for slot in self.slots:
+            if slot.ticket and slot.ticket.ticket_id == ticket_id:
+                parking_fee = slot.ticket.calculate_parking_fee()
+                print(f"Vehicle {slot.vehicle.vehicle_number} checked out from slot {slot.slot_number}.")
+                print(f"Parking fee: {parking_fee} currency units.")
+                slot.remove_vehicle()
+                return None
+            
+        print(f"Invalid ticket ID: {ticket_id}.")
+        return None
+
+    def display_parked_vehicles_details(self):
+        ''' gives the details on parked vehicles '''
+
+        vehicle_parked = [[slot.slot_number, slot.vehicle.vehicle_number, slot.vehicle.vehicle_type, slot.ticket.ticket_id] for slot in self.slots if not slot.is_available]
+
+        if vehicle_parked:
+            for details in vehicle_parked:
+                print(f"Slot: {details[0]}, Vehicle Number: {details[1]}, Vehicle Type: {details[2]}, Ticket ID: {details[3]}")
+        else:
+            print("All slots available at the moment.")
+

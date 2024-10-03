@@ -1,0 +1,37 @@
+'''
+
+Components: Parking_slot
+
+Funtionalities:
+        - total space there
+        - assign a vehicle 
+        - update the available to unavailable
+        - remove a vehicle 
+        - make the slot available
+
+'''
+
+
+class ParkingSlot:
+    
+    def __init__(self, slot_number: int):
+        ''' creates all the slot '''
+
+        self.slot_number: int = slot_number
+        self.is_available: bool = True
+        self.vehicle: str = None
+        self.ticket: str = None
+
+    def assign_vehicle(self, vehicle: str, ticket: int):     
+        ''' Assign a vehicle and ticket to this parking slot '''
+
+        self.is_available = False
+        self.vehicle = vehicle
+        self.ticket = ticket
+
+    def remove_vehicle(self) -> None:  
+        ''' Free up the slot by removing the vehicle and ticket '''
+
+        self.is_available = True
+        self.vehicle = None
+        self.ticket = None

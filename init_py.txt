@@ -1,0 +1,35 @@
+'''
+
+Components:
+    - vehicles
+    - parkinglot
+    - parking_slot
+    - ticket
+
+Funtionalities:
+
+    Vehicle:
+        - two whleer or four wheeler
+        - vehicles number
+    
+    parkinglot:
+        - total space available
+        - check the avalibility
+        - issuse tickets to customer
+        - checkouts tickets 
+        - parked vehicle details
+
+    Parking_slot:
+        - total space there
+        - assign a vehicle 
+        - update the available to unavailable
+        - remove a vehicle 
+        - make the slot available
+
+    ticket: 
+        -get vehicles datails
+        -calculate the parking fee
+
+
+
+'''

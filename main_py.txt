@@ -1,0 +1,38 @@
+from vehicles import Vehicle
+from parkinglot import ParkingLot
+
+
+def main():
+
+    
+    parking_lot = ParkingLot(5)
+
+    
+    parking_lot.display_available_slots()
+
+    vehicle = Vehicle("KA-01-1234", "Bike")
+
+    
+    ticket = parking_lot.generate_ticket(vehicle)
+    if ticket:
+        print(f"Ticket generated: {ticket.ticket_id}, Slot: {ticket.slot_number}")
+
+    parking_lot.display_Parked_vehicles_details()
+
+    vehicle2 = Vehicle("TN6749", "car")
+
+    ticket2 = parking_lot.generate_ticket(vehicle2)
+    if ticket2:
+        print(f"Ticket generated: {ticket2.ticket_id}, Slot: {ticket2.slot_number}")
+
+    parking_lot.display_available_slots()
+
+    parking_lot.display_Parked_vehicles_details()
+
+   
+    ticket_id = ticket.ticket_id
+    parking_lot.checkout_vehicle(ticket_id)
+
+
+if __name__ == "__main__":
+    main()

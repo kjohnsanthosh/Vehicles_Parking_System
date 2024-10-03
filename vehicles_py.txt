@@ -1,0 +1,24 @@
+'''
+
+Components: vehicles
+
+Funtionalities:
+        -two whleer or four wheeler
+        -vehicles number
+
+'''
+
+class Vehicle:
+    def __init__(self, vehicle_number: str, vehicle_type: str):
+        ''' gets the vehicle details '''
+
+        self.vehicle_number: str = vehicle_number
+        self.vehicle_type: str = vehicle_type
+
+
+    def type_of_vehicles(self):
+        ''' which type of vehiccle is this(Car/Bike) '''
+
+        type_of_vehicle = self.vehicle_type.lower()
+        return type_of_vehicle
+        

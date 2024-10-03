@@ -1,0 +1,41 @@
+'''
+
+Components: tickets
+
+Funtionalities:
+        -get vehicles datails
+        -calculate the parking fee
+
+
+'''
+
+
+import random
+
+
+class Ticket:
+    def __init__(self, slot_number: int, vehicle_number: str, vehicle_type: str):
+
+        ''' Generates a unique ticket '''
+
+        self.ticket_id: int = random.randint(1000, 9999)
+        self.slot_number: int = slot_number
+        self.vehicle_number: str = vehicle_number
+        self.vehicle_type: str = vehicle_type
+        self.car_parking_fee: int = 200
+        self.bike_parking_fee: int = 100
+        
+
+    def calculate_parking_fee(self):
+
+        ''' Calculates the parking fee based on type of vehicles '''
+
+        if self.vehicle_type.lower() == "car":
+            base_rate = self.car_parking_fee
+        else:
+            base_rate = self.bike_parking_fee 
+
+
+        return base_rate
+
+    
